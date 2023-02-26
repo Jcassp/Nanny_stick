@@ -15,8 +15,8 @@ html {
 body {
     margin: 0;
     box-sizing: border-box;
-    font-family: "poppins";
-    background: var(--color);
+    font-family: "Open Sans", sans-serif;
+    background: var(--background);
     color: var(--color);
     letter-spacing: 1px;
     transition: background 0.2s ease;
@@ -33,6 +33,14 @@ a {
 
 h1 {
     font-size: 2.5rem;
+    font-family: "Roboto", sans-serif;
+}
+
+.navbar {
+    background: var(--color);
+    color: var(--background);
+    font-size: 500;
+
 }
 
 .container {
