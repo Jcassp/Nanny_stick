@@ -5,18 +5,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
+    <script src="assets/css/fbase.js"></script>
 
-    <script>
-        var firebaseConfig = {
-            apiKey: "AIzaSyCucGPZi-8AORbcY9dcJ6osMAdLt07yanc",
-            authDomain: "nanny-stick-db2e7.firebaseapp.com",
-            projectId: "nanny-stick-db2e7",
-            storageBucket: "nanny-stick-db2e7.appspot.com",
-            messagingSenderId: "223836988225",
-            appId: "1:223836988225:web:d8104242f7600d03cc37c0"
-        };
-        firebase.initializeApp(firebaseConfig);
-    </script>
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -52,8 +42,8 @@
                 -->
                 <h1>REGISTER</h1>
                 <form>
-                    <input id="email" required type="email" name="email" placeholder="Email" />
-                    <input id="password" required type="password" name="password" placeholder="Contraseña" />
+                    <input id="email" required type="email" name="email" placeholder="EMAIL" />
+                    <input id="password" required type="password" name="password" placeholder="PASSWORD" />
                     <button id="signup" type="submit">Registrar</button>
                 </form>
                 <script>
@@ -70,21 +60,38 @@
                                 console.log('El usuario se ha registrado exitosamente');
 
                                 // Envía un correo electrónico de verificación al usuario
-                                user.sendEmailVerification()
-                                    .then(function () {
-                                        // El correo electrónico de verificación se ha enviado correctamente
-                                        console.log('Se ha enviado un correo electrónico de verificación al usuario');
+                                firebase.auth().currentUser.sendEmailVerification()
+                                    .then(() => {
+                                        // Email verification sent!
+                                        // ...
+                                        console.log("enviando...");
                                         window.location.href = "home.html";
-                                    })
-                                    .catch(function (error) {
-                                        // Hubo un error al enviar el correo electrónico de verificación
+                                    }).catch(function (error) {
+                                        //         // Hubo un error al enviar el correo electrónico de verificación
                                         console.log(error.message);
                                     });
+
                             })
                             .catch(function (error) {
                                 // Hubo un error al registrar al usuario
                                 console.log(error.message);
                             });
+
+                    });
+
+                    firebase.auth().onAuthStateChanged((user) => {
+                        if (user) {
+                            // User is signed in, see docs for a list of available properties
+                            // https://firebase.google.com/docs/reference/js/firebase.User
+                            var uid = user.uid;
+                            console.log("usuario logeado")
+                            window.location.href = "home.html";
+                            // ...
+                        } else {
+                            // User is signed out
+                            // ...
+                            console.log('No hay usuario logeado')
+                        }
                     });
 
                 </script>
