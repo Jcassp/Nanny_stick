@@ -24,34 +24,16 @@
 </head>
 
 <body>
-    <!-- ======= Header ======= -->
-    <header id="header" class="fixed-top d-flex align-items-center header-transparent">
-        <div class="https://firebase.google.com/docs/reference/js/firebase.User">
-
-            <div class="logo">
-                <h1 class="text-light"><a href="index.html"><span>Nanny stick</span></a></h1>
-            </div>
-
-            <nav id="navbar" class="navbar">
-                <ul>
-                    <li><a class="active " href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="login.html">Sign in</a></li>
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
-
+    <nav class="navbar-login">
+        <div class="container-fluid">
+            <h1 class="text-light"><a href="index.html"><span>Nanny stick</span></a></h1>
         </div>
-    </header><!-- End Header -->
+    </nav>
 
     <section class="container">
         <div class="login-container">
-            <div class="circle circle-oine"></div>
+            <div class="circle circle-one"></div>
             <div class="form-container">
-                <!--imagen de github   
-                <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png" alt="illustration" class="illustration" />
-                -->
                 <h1>LOGIN</h1>
                 <form>
                     <input id="email_login" required type="text" placeholder="EMAIL" />
@@ -59,43 +41,6 @@
                     <button id="signin" type="submit">Ingresar</button>
 
                 </form>
-                <script>
-                    // Agrega un evento de escucha al botón de registro
-                    document.querySelector('#signin').addEventListener('click', function (e) {
-                        e.preventDefault();
-                        var email = document.querySelector('#email_login').value;
-                        var password = document.querySelector('#password_login').value;
-
-                        firebase.auth().signInWithEmailAndPassword(email, password)
-                            .then((userCredential) => {
-                                // Signed in
-                                var user = userCredential.user;
-                                console.log('usuario logeado');
-                                // ...
-                            })
-                            .catch((error) => {
-                                var errorCode = error.code;
-                                var errorMessage = error.message;
-                                console.log('error:', errorCode);
-                            });
-
-                    });
-
-                    firebase.auth().onAuthStateChanged((user) => {
-                        if (user) {
-                            // User is signed in, see docs for a list of available properties
-                            // https://firebase.google.com/docs/reference/js/firebase.User
-                            var uid = user.uid;
-                            window.location.href = "home.html";
-                            // ...
-                        } else {
-                            // User is signed out
-                            // ...
-                            console.log('No hay usuario logeado')
-                        }
-                    });
-
-                </script>
                 <div class="register-forget opacity">
                     <a href="register.html">REGISTER</a>
                     <!--<a href="">FORGOT PASSWOORD</a>-->
@@ -105,6 +50,43 @@
         </div>
         <div class="theme-btn container"> </div>
     </section>
+    <script>
+        // Agrega un evento de escucha al botón de registro
+        document.querySelector('#signin').addEventListener('click', function (e) {
+            e.preventDefault();
+            var email = document.querySelector('#email_login').value;
+            var password = document.querySelector('#password_login').value;
+
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signed in
+                    var user = userCredential.user;
+                    console.log('usuario logeado');
+                    // ...
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    console.log('error:', errorCode);
+                });
+
+        });
+
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                // User is signed in, see docs for a list of available properties
+                // https://firebase.google.com/docs/reference/js/firebase.User
+                var uid = user.uid;
+                window.location.href = "home.html";
+                // ...
+            } else {
+                // User is signed out
+                // ...
+                console.log('No hay usuario logeado')
+            }
+        });
+
+    </script>
 
     <!-- Vendor JS Files -->
     <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>

@@ -1,6 +1,10 @@
 
-
-
+/**
+* Template Name: Moderna - v4.11.0
+* Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
 
 /*--------------------------------------------------------------
 # General
@@ -27,7 +31,6 @@ body {
   h5,
   h6,
   .font-primary {
-    font-size: 2.5rem;
     font-family: "Roboto", sans-serif;
   }
   
@@ -63,34 +66,6 @@ body {
     visibility: visible;
     opacity: 1;
   }
-  
-    /*--------------------------------------------------------------
-  # Buttons
-  --------------------------------------------------------------*/
-
-  .buttons-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.button {
-    width: 80px;
-    height: 80px;
-    margin: 10px;
-    border-radius: 50%;
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    font-size: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
-
-.button:hover {
-    transform: scale(1.1);
-}
   
   /*--------------------------------------------------------------
   # Header
@@ -146,12 +121,6 @@ body {
   */
   .navbar {
     padding: 0;
-    margin: 0;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    height: 80px;
-    background-color: #1B71A1;
   }
   
   .navbar ul {
@@ -190,7 +159,7 @@ body {
   .navbar .active,
   .navbar .active:focus,
   .navbar li:hover>a {
-    color: #1B71A1;
+    color: #a2cce3;
   }
 
   
@@ -223,7 +192,7 @@ body {
     right: 0;
     left: 0;
     bottom: 0;
-    background: #1B71A1;
+    background: rgba(0, 170, 255, 0.492);
     transition: 0.3s;
   }
   
@@ -256,7 +225,7 @@ body {
   .navbar-mobile a:hover,
   .navbar-mobile .active,
   .navbar-mobile li:hover>a {
-    color: #1B71A1;
+    color: #68A4C4;
   }
   
   .navbar-mobile .getstarted,

@@ -1,3 +1,9 @@
+:root {
+    --background: #ffffff;
+    --color: #FFFEFE;
+    --primary-color: #0DAFCA;
+}
+
 body {
     display: flex;
     justify-content: center;
@@ -17,6 +23,10 @@ h6,
     color: #ffffff;
 }
 
+a {
+    text-decoration: none;
+    color: var(--color);
+}
 
 #header {
     height: 80px;
@@ -24,127 +34,7 @@ h6,
     z-index: 997;
     transition: all 0.5s;
     background: #1B71A1;
-}
-
-/**
-  * Desktop Navigation 
-  */
-.navbar {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    height: 80px;
-    background-color: #1B71A1;
-}
-
-.navbar ul {
-    padding: 0;
-}
-
-.navbar li {
-    position: relative;
-}
-
-.navbar a,
-.navbar a:focus {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 0 10px 30px;
-    font-family: "Open Sans", sans-serif;
-    font-size: 14px;
-    color: #fff;
-    white-space: nowrap;
-    transition: 0.3s;
-}
-
-.navbar a i,
-.navbar a:focus i {
-    font-size: 12px;
-    line-height: 0;
-    margin-left: 5px;
-}
-
-.navbar a:hover,
-.navbar .active,
-.navbar .active:focus,
-.navbar li:hover>a {
-    color: #ffffff;
-}
-
-
-/**
-  * Mobile Navigation 
-  */
-.mobile-nav-toggle {
-    color: #fff;
-    font-size: 28px;
-    cursor: pointer;
-    display: none;
-    line-height: 0;
-    transition: 0.5s;
-}
-
-@media (max-width: 991px) {
-    .mobile-nav-toggle {
-        display: block;
-    }
-
-    .navbar ul {
-        display: none;
-    }
-}
-
-.navbar-mobile {
-    position: fixed;
-    overflow: hidden;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background: #1B71A1;
-    transition: 0.3s;
-}
-
-.navbar-mobile .mobile-nav-toggle {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-}
-
-.navbar-mobile ul {
-    display: block;
-    position: absolute;
-    top: 55px;
-    right: 15px;
-    bottom: 15px;
-    left: 15px;
-    padding: 10px 0;
-    background-color: #fff;
-    overflow-y: auto;
-    transition: 0.3s;
-}
-
-.navbar-mobile a,
-.navbar-mobile a:focus {
-    padding: 10px 20px;
-    font-size: 15px;
-    color: #1e4356;
-}
-
-.navbar-mobile a:hover,
-.navbar-mobile .active,
-.navbar-mobile li:hover>a {
-    color: #1B71A1;
-}
-
-.navbar-mobile .getstarted,
-.navbar-mobile .getstarted:focus {
-    margin: 15px;
-}
-
+  }
 
 .buttons-container {
     display: flex;
@@ -153,6 +43,14 @@ h6,
     flex-wrap: wrap;
 }
 
+.button-cerrar_sesion{
+    background-color: #1B71A1;
+    color: #ffffff;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
 .button {
     width: 200px;
     height: 200px;
