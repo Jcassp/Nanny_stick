@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home page - Nanny stick</title>
+    <title>Map page - Nanny stick</title>
 
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
@@ -30,6 +30,12 @@
     <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
+    <!-- Mapbox  -->
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css' rel='stylesheet' />
+
+
     <!-- Template Main CSS File -->
     <link href="assets/css/home.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/2c2dd460d2.js" crossorigin="anonymous"></script>
@@ -43,69 +49,23 @@
 
             <div class="logo">
                 <h1 class="text-light"><a href="index.html"><span>Nanny stick</span></a></h1>
-
             </div>
             <nav id="navbar" class="navbar">
-                <a href="#"><button class="button-cerrar_sesion">Home </button></a>
-                <button class="button-cerrar_sesion">|</button>
+               <a href="home.html"><button class="button-cerrar_sesion">Home </button></a> 
+                <button class="button-cerrar_sesion" >|</button>
                 <button class="button-cerrar_sesion" id="cerrar_sesion">Cerrar sesion</button>
             </nav><!-- .navbar -->
         </div>
     </header><!-- End Header -->
 
-    <!-- ======= Buttons Section ======= -->
-    <section>
-        <div class=" buttons-container">
+    <section class="map-container"> <!-- ====== Map section======  -->
+        <div id='map' style='width: 100%; height: 100%;'></div>
+        <div class="buttons-container-2">
             <button class="button"><i class="fa-solid fa-map-pin fa-2xl"></i></button>
-            <a href="map.html"><button class="button"><i class="fa-solid fa-map-location-dot fa-2xl"></i></button></a>
-            <button id="config-button" class="button"><i class="fa-solid fa-gear fa-2xl"></i></button>
-            <div id="config-menu">
-                <label for="color-select">Color:</label>
-                <select id="color-select">
-                    <option value="blue">Azul</option>
-                    <option value="red">Rojo</option>
-                    <option value="green">Verde</option>
-                </select>
-            </div>
         </div>
-
-    </section>
-
-
-    <script>
-        document.getElementById("cerrar_sesion").addEventListener("click", function () {
-            firebase.auth().signOut().then(function () {
-                // Sign-out successful.
-                console.log("Sesion cerrada");
-                window.location.href = "index.html";
-            }).catch(function (error) {
-                // An error happened.
-                console.log("Error al cerrar sesion");
-            });
-        });
+    </section> <!-- ====== End Map section======  -->
 
 
-        var configButton = document.getElementById("config-button");
-        var configMenu = document.getElementById("config-menu");
-
-        configButton.addEventListener("click", function () {
-            configMenu.classList.toggle("visible");
-        });
-
-        var colorSelect = document.getElementById("color-select");
-
-        colorSelect.addEventListener("change", function () {
-            document.body.style.backgroundColor = colorSelect.value;
-            localStorage.setItem("background-color", colorSelect.value);
-        });
-
-        var savedColor = localStorage.getItem("background-color");
-
-        if (savedColor) {
-            document.body.style.backgroundColor = savedColor;
-            colorSelect.value = savedColor;
-        }
-    </script>
     <!-- Vendor JS Files -->
     <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="assets/vendor/aos/aos.js"></script>
@@ -118,6 +78,30 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiamNhc3NwIiwiYSI6ImNsZmJndHUxNDAxZXQzeGxsZ3puMzJwMXcifQ.8S2FPuD_JLw8y9y47hNSTQ';
+        const map = new mapboxgl.Map({
+            container: 'map', // container ID
+            style: 'mapbox://styles/mapbox/streets-v12', // style URL
+            center: [-74.5, 40], // starting position [lng, lat]
+            zoom: 9, // starting zoom
+        });
+
+        map.setCenter([-102.55, 23.63]);
+
+        document.getElementById("cerrar_sesion").addEventListener("click", function () {
+            firebase.auth().signOut().then(function () {
+                // Sign-out successful.
+                console.log("Sesion cerrada");
+                window.location.href = "index.html";
+            }).catch(function (error) {
+                // An error happened.
+                console.log("Error al cerrar sesion");
+            });
+        });
+        
+    </script>
 </body>
 
 </html>
