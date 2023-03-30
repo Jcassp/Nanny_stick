@@ -40,63 +40,14 @@
                 <!--imagen de github   
                 <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png" alt="illustration" class="illustration" />
                 -->
-                <h1>REGISTER</h1>
+                <h1>Registrarme</h1>
                 <form>
                     <input id="email" required type="email" name="email" placeholder="EMAIL" />
-                    <input id="password" required type="password" name="password" placeholder="PASSWORD" />
+                    <input id="password" required type="password" name="password" placeholder="CONTRASEÑA" />
                     <button id="signup" type="submit">Registrar</button>
                 </form>
-                <script>
-                    // Agrega un evento de escucha al botón de registro
-                    document.querySelector('#signup').addEventListener('click', function (e) {
-                        e.preventDefault();
-                        var email = document.querySelector('#email').value;
-                        var password = document.querySelector('#password').value;
-
-                        // Crea la cuenta de usuario en Firebase
-                        firebase.auth().createUserWithEmailAndPassword(email, password)
-                            .then(function (user) {
-                                // El usuario se ha registrado exitosamente
-                                console.log('El usuario se ha registrado exitosamente');
-
-                                // Envía un correo electrónico de verificación al usuario
-                                firebase.auth().currentUser.sendEmailVerification()
-                                    .then(() => {
-                                        // Email verification sent!
-                                        // ...
-                                        console.log("enviando...");
-                                        window.location.href = "home.html";
-                                    }).catch(function (error) {
-                                        //         // Hubo un error al enviar el correo electrónico de verificación
-                                        console.log(error.message);
-                                    });
-
-                            })
-                            .catch(function (error) {
-                                // Hubo un error al registrar al usuario
-                                console.log(error.message);
-                            });
-
-                    });
-
-                    firebase.auth().onAuthStateChanged((user) => {
-                        if (user) {
-                            // User is signed in, see docs for a list of available properties
-                            // https://firebase.google.com/docs/reference/js/firebase.User
-                            var uid = user.uid;
-                            console.log("usuario logeado")
-                            window.location.href = "home.html";
-                            // ...
-                        } else {
-                            // User is signed out
-                            // ...
-                            console.log('No hay usuario logeado')
-                        }
-                    });
-
-                </script>
                 <div class="register-forget opacity">
-                    <a href="login.html">ALREADY HAVE ACCOUNT.</a>
+                    <a href="login.html">Ya tengo cuenta.</a>
                 </div>
             </div>
             <div class="circle circle-two"></div>
@@ -116,6 +67,56 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+
+    <script>
+        // Agrega un evento de escucha al botón de registro
+        document.querySelector('#signup').addEventListener('click', function (e) {
+            e.preventDefault();
+            var email = document.querySelector('#email').value;
+            var password = document.querySelector('#password').value;
+
+            // Crea la cuenta de usuario en Firebase
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then(function (user) {
+                    // El usuario se ha registrado exitosamente
+                    console.log('El usuario se ha registrado exitosamente');
+
+                    // Envía un correo electrónico de verificación al usuario
+                    firebase.auth().currentUser.sendEmailVerification()
+                        .then(() => {
+                            // Email verification sent!
+                            // ...
+                            console.log("enviando...");
+                            window.location.href = "home.html";
+                        }).catch(function (error) {
+                            //         // Hubo un error al enviar el correo electrónico de verificación
+                            console.log(error.message);
+                        });
+
+                })
+                .catch(function (error) {
+                    // Hubo un error al registrar al usuario
+                    console.log(error.message);
+                });
+
+        });
+
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                // User is signed in, see docs for a list of available properties
+                // https://firebase.google.com/docs/reference/js/firebase.User
+                var uid = user.uid;
+                console.log("usuario logeado")
+                window.location.href = "home.html";
+                // ...
+            } else {
+                // User is signed out
+                // ...
+                console.log('No hay usuario logeado')
+            }
+        });
+
+    </script>
 </body>
 
 </html>
