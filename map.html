@@ -10,7 +10,9 @@
 
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-database.js"></script>
+
+
     <script src="assets/css/fbase.js"></script>
 
     <!-- Favicons -->
@@ -51,8 +53,8 @@
                 <h1 class="text-light"><a href="index.html"><span>Nanny stick</span></a></h1>
             </div>
             <nav id="navbar" class="navbar">
-               <a href="home.html"><button class="button-cerrar_sesion">Home </button></a> 
-                <button class="button-cerrar_sesion" >|</button>
+                <a href="home.html"><button class="button-cerrar_sesion">Home </button></a>
+                <button class="button-cerrar_sesion">|</button>
                 <button class="button-cerrar_sesion" id="cerrar_sesion">Cerrar sesion</button>
             </nav><!-- .navbar -->
         </div>
@@ -61,7 +63,7 @@
     <section class="map-container"> <!-- ====== Map section======  -->
         <div id='map' style='width: 100%; height: 100%;'></div>
         <div class="buttons-container-2">
-            <button class="button"><i class="fa-solid fa-magnifying-glass-location fa-2xl"></i></button>
+            <button id="cambiar_ubicacion" class="button"><i class="fa-solid fa-magnifying-glass-location fa-2xl"></i></button>
         </div>
     </section> <!-- ====== End Map section======  -->
 
@@ -84,11 +86,10 @@
         const map = new mapboxgl.Map({
             container: 'map', // container ID
             style: 'mapbox://styles/mapbox/streets-v12', // style URL
-            center: [-74.5, 40], // starting position [lng, lat]
+            center: [-106.148137, 28.641227], // starting position [lng, lat]
             zoom: 9, // starting zoom
         });
 
-        map.setCenter([-102.55, 23.63]);
 
         document.getElementById("cerrar_sesion").addEventListener("click", function () {
             firebase.auth().signOut().then(function () {
@@ -100,7 +101,41 @@
                 console.log("Error al cerrar sesion");
             });
         });
-        
+
+        const marker = new mapboxgl.Marker()
+            .setLngLat([-99.1332, 19.4326]) // Ciudad de México
+            .addTo(map);
+
+        //cambiar la ubicacion del marcador con un boton
+        document.getElementById("cambiar_ubicacion").addEventListener("click", function () {
+            //conectar con la base de datos
+            var db = firebase.database();
+            db.ref("Ubicacion").on("value", function (snapshot) {
+                var latitud = snapshot.val().Lat;
+                var longitud = snapshot.val().Long;
+                console.log(latitud);
+                console.log(longitud);
+                marker.setLngLat([longitud, latitud]);
+                map.flyTo({
+                    center: [longitud, latitud],
+                    essential: true // this animation is considered essential with respect to prefers-reduced-motion
+                });
+            });
+
+            // marker.setLngLat([-106.148137, 28.641227]);
+            // map.flyTo({
+            //     center: [-106.148137, 28.641227],
+            //     essential: true // this animation is considered essential with respect to prefers-reduced-motion
+            // });
+        });
+
+
+
+
+
+
+
+
     </script>
 </body>
 
