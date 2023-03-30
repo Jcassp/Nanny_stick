@@ -56,22 +56,37 @@
     <!-- ======= Buttons Section ======= -->
     <section>
         <div class=" buttons-container">
-            <a href="routes.html"><button class="button"><i class="fa-solid fa-map-pin fa-2xl"></i></button></a>
+            <button id="config-button" class="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+                aria-controls="offcanvasExample"><i class="fa-solid fa-gear fa-2xl"></i></button>
             <a href="map.html"><button class="button"><i class="fa-solid fa-map-location-dot fa-2xl"></i></button></a>
-            <button id="config-button" class="button"><i class="fa-solid fa-gear fa-2xl"></i></button>
-            <div id="config-menu">
-                <label for="color-select">Color:</label>
-                <select id="color-select">
-                    <option value="blue">Azul</option>
-                    <option value="red">Rojo</option>
-                    <option value="green">Verde</option>
-                </select>
+            <a href="routes.html"><button class="button"><i class="fa-solid fa-map-pin fa-2xl"></i></button></a>
+        </div>
+    </section>
+    <!-- ======= End Buttons Section ======= -->
+
+    <!-- ======= settings ======= -->
+    <section>
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+            aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="dropdown mt-3">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-bs-toggle="dropdown"> Color de fondo </button>
+                    <select class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="color-select">
+                        <option value="white">Blanco</option>
+                        <option value="black">Negro</option>
+                        <option value="gray">Gris</option>
+                    </select>
+
+                </div>
             </div>
         </div>
-
     </section>
-
-
+    <!-- ======= end settings ======= -->
     <script>
         document.getElementById("cerrar_sesion").addEventListener("click", function () {
             firebase.auth().signOut().then(function () {
