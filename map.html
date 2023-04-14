@@ -110,9 +110,9 @@
         document.getElementById("cambiar_ubicacion").addEventListener("click", function () {
             //conectar con la base de datos
             var db = firebase.database();
-            db.ref("Ubicacion").on("value", function (snapshot) {
-                var latitud = snapshot.val().Lat;
-                var longitud = snapshot.val().Long;
+            db.ref("UBICACION").on("value", function (snapshot) {
+                var latitud = snapshot.val().LAT;
+                var longitud = snapshot.val().LONG;
                 console.log(latitud);
                 console.log(longitud);
                 marker.setLngLat([longitud, latitud]);
